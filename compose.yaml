@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: 'postgres:17'
+    environment:
+      - 'POSTGRES_DB=minibank'
+      - 'POSTGRES_USER=minibank'
+      - 'POSTGRES_PASSWORD=minibank'
+    ports:
+      - '5432:5432'
+    volumes:
+      - minibank-data:/var/lib/postgresql/data
+
+volumes:
+  minibank-data:

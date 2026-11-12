@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: minibank
+  jpa:
+    # Schema is owned by Flyway migrations; Hibernate only checks it matches.
+    hibernate:
+      ddl-auto: validate
+    # Keep DB access inside the service layer, not during view rendering.
+    open-in-view: false
+  flyway:
+    locations: classpath:db/migration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
