@@ -38,14 +38,25 @@ Talk to the owner in Vietnamese. Code, commits, docs and comments are in English
 ## Commands
 
 - Build and all tests (needs Docker running): `./mvnw verify`
+  (includes Spotless format check and ArchUnit architecture rules)
+- Fix formatting: `./mvnw spotless:apply`
 - Run the app (starts Postgres via compose.yaml): `./mvnw spring-boot:run`
 - Run with a throwaway Testcontainers DB: `./mvnw spring-boot:test-run`
 
 ## Conventions
 
 - Stack: Java 21, Spring Boot 4, PostgreSQL 17, Flyway, Testcontainers.
-- Package by feature: `com.minibank.<feature>` (e.g. `account`, `transfer`,
-  `auth`), each with its controller, service, repository, domain types.
+- Architecture: read `docs/ARCHITECTURE.md` before adding code. Modular
+  monolith, package by feature `com.minibank.<module>`, layered inside as
+  `web → service → domain`, external adapters in `infra` behind domain ports.
+  `ArchitectureTest` enforces this; fix the code, never loosen a rule to pass.
+- Design patterns only where they solve a problem listed in
+  `docs/ARCHITECTURE.md`. Adding a new pattern means adding a row there
+  explaining the problem it solves. No speculative abstractions.
+- Rich domain model: state changes go through intention-revealing domain
+  methods (`account.debit(amount)`) that guard invariants; no public setters
+  for balance or status.
+- Records for DTOs, commands and value objects. Constructor injection only.
 - Money: `BigDecimal` in Java, `NUMERIC(19,4)` in SQL. Never `float`/`double`.
   Currency is VND.
 - Schema changes only through new Flyway migrations

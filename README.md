@@ -23,6 +23,9 @@ Requirements: JDK 21 and Docker.
 
 Health check: <http://localhost:8080/actuator/health>
 
-## Design decisions
+## Architecture
 
-Architecture decisions are recorded in [docs/adr](docs/adr).
+Modular monolith with layered feature modules; boundaries are enforced by
+ArchUnit tests on every build. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+for diagrams, module rules and the design patterns used, each with the problem
+it solves. Decisions are recorded in [docs/adr](docs/adr).
