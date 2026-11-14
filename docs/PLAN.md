@@ -8,13 +8,15 @@ writing tests first and reviewing. Each task ends with `./mvnw verify` green.
 - [x] [CLAUDE] Spring Boot skeleton, Flyway, Testcontainers, Docker Compose
 - [x] [CLAUDE] CLAUDE.md, README, roadmap, first ADR
 - [x] [CLAUDE] GitHub Actions CI running `./mvnw verify`
-- [ ] [YOU] Create the GitHub repository and push `main`
+- [x] [YOU] Create the GitHub repository and push `main`
+- [x] [CLAUDE] Architecture doc, ADR 0002, ArchUnit rules, Spotless, JaCoCo
 
 ## Phase 1: Core banking
 
 - [ ] [CLAUDE] Users table, registration, login with Spring Security + JWT,
       BCrypt password hashing
 - [ ] [CLAUDE] Global error handling (problem details) and request validation
+- [ ] [CLAUDE] `Money` value object in `common` with unit tests
 - [ ] [CLAUDE] Accounts: open account, get balance, list own accounts;
       users can only see their own accounts
 - [ ] [YOU] Deposit and withdraw inside one transaction, reject overdraft
